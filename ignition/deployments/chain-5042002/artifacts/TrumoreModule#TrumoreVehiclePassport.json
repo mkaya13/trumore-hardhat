@@ -1,0 +1,401 @@
+{
+  "_format": "hh3-artifact-1",
+  "contractName": "TrumoreVehiclePassport",
+  "sourceName": "contracts/TrumoreVehiclePassport.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "AccessControlBadConfirmation",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "neededRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessControlUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "vehicleId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "passportHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "reportVersion",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "issuedAt",
+          "type": "uint64"
+        }
+      ],
+      "name": "PassportAttested",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "vehicleId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "reportVersion",
+          "type": "uint64"
+        }
+      ],
+      "name": "PassportRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ATTESTER_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "vehicleId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "passportHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint64",
+          "name": "reportVersion",
+          "type": "uint64"
+        }
+      ],
+      "name": "attestPassport",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "passports",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "passportHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint64",
+          "name": "reportVersion",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "issuedAt",
+          "type": "uint64"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "callerConfirmation",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "vehicleId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "revokePassport",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "vehicleId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "passportHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifyPassport",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561000f575f5ffd5b5061001a5f3361004b565b506100457fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa93361004b565b506100f4565b5f828152602081815260408083206001600160a01b038516845290915281205460ff166100eb575f838152602081815260408083206001600160a01b03861684529091529020805460ff191660011790556100a33390565b6001600160a01b0316826001600160a01b0316847f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d60405160405180910390a45060016100ee565b505f5b92915050565b6108d7806101015f395ff3fe608060405234801561000f575f5ffd5b50600436106100b1575f3560e01c806391d148541161006e57806391d148541461016f5780639cbe304314610182578063a217fddf14610195578063ac0b43e51461019c578063d547741f146101af578063fb51ed4e146101c2575f5ffd5b806301ffc9a7146100b5578063248a9ca3146100dd5780632f2ff15d1461010d5780632f81bb581461012257806336568abe1461014957806374bd276e1461015c575b5f5ffd5b6100c86100c33660046107c1565b61023d565b60405190151581526020015b60405180910390f35b6100ff6100eb3660046107ef565b5f9081526020819052604090206001015490565b6040519081526020016100d4565b61012061011b366004610806565b610273565b005b6100ff7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa981565b610120610157366004610806565b61029d565b6100c861016a36600461083f565b6102d5565b6100c861017d366004610806565b61033c565b6101206101903660046107ef565b610364565b6100ff5f81565b6101206101aa36600461085f565b61044a565b6101206101bd366004610806565b61065b565b61020a6101d03660046107ef565b600160208190525f9182526040909120805491015467ffffffffffffffff80821691600160401b810490911690600160801b900460ff1684565b6040516100d4949392919093845267ffffffffffffffff9283166020850152911660408301521515606082015260800190565b5f6001600160e01b03198216637965db0b60e01b148061026d57506301ffc9a760e01b6001600160e01b03198316145b92915050565b5f8281526020819052604090206001015461028d8161067f565b610297838361068c565b50505050565b6001600160a01b03811633146102c65760405163334bd91960e11b815260040160405180910390fd5b6102d0828261071b565b505050565b5f82815260016020818152604080842081516080810183528154815293015467ffffffffffffffff80821693850193909352600160401b810490921690830152600160801b900460ff1615801560608301819052906103345750805183145b949350505050565b5f918252602082815260408084206001600160a01b0393909316845291905290205460ff1690565b7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa961038e8161067f565b5f82815260016020819052604090912090810154600160801b900460ff166103f45760405162461bcd60e51b815260206004820152601460248201527350617373706f72743a206e6f742061637469766560601b60448201526064015b60405180910390fd5b60018101805460ff60801b19811690915560405167ffffffffffffffff909116815283907f0d11f469b85e239f342e4e940c25c6b5f9f36db1bab403dcf240918309dc21ce9060200160405180910390a2505050565b7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa96104748161067f565b836104c15760405162461bcd60e51b815260206004820152601960248201527f50617373706f72743a207a65726f2076656869636c652069640000000000000060448201526064016103eb565b826105045760405162461bcd60e51b81526020600482015260136024820152720a0c2e6e6e0dee4e87440f4cae4de40d0c2e6d606b1b60448201526064016103eb565b5f8267ffffffffffffffff16116105565760405162461bcd60e51b81526020600482015260166024820152752830b9b9b837b93a1d103d32b937903b32b939b4b7b760511b60448201526064016103eb565b5f8481526001602081905260409091209081015467ffffffffffffffff908116908416116105c65760405162461bcd60e51b815260206004820152601b60248201527f50617373706f72743a2076657273696f6e206e6f74206e65776572000000000060448201526064016103eb565b838155600181018054600160801b67ffffffffffffffff8681166fffffffffffffffffffffffffffffffff199093168317600160401b429283169081029190911760ff60801b191692909217909355604080519283526020830191909152869188917fe3689ec629709a49514dca094d75d46b94aab2c392d04dfb29d9904e00819e96910160405180910390a3505050505050565b5f828152602081905260409020600101546106758161067f565b610297838361071b565b6106898133610784565b50565b5f610697838361033c565b610714575f838152602081815260408083206001600160a01b03861684529091529020805460ff191660011790556106cc3390565b6001600160a01b0316826001600160a01b0316847f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d60405160405180910390a450600161026d565b505f61026d565b5f610726838361033c565b15610714575f838152602081815260408083206001600160a01b0386168085529252808320805460ff1916905551339286917ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b9190a450600161026d565b61078e828261033c565b6107bd5760405163e2517d3f60e01b81526001600160a01b0382166004820152602481018390526044016103eb565b5050565b5f602082840312156107d1575f5ffd5b81356001600160e01b0319811681146107e8575f5ffd5b9392505050565b5f602082840312156107ff575f5ffd5b5035919050565b5f5f60408385031215610817575f5ffd5b8235915060208301356001600160a01b0381168114610834575f5ffd5b809150509250929050565b5f5f60408385031215610850575f5ffd5b50508035926020909101359150565b5f5f5f60608486031215610871575f5ffd5b8335925060208401359150604084013567ffffffffffffffff81168114610896575f5ffd5b80915050925092509256fea2646970667358221220b1cbf61371ef2612abfa908cab7c1cbea847a88ff44a601704cd4ca67c3f3c5e64736f6c63430008220033",
+  "deployedBytecode": "0x608060405234801561000f575f5ffd5b50600436106100b1575f3560e01c806391d148541161006e57806391d148541461016f5780639cbe304314610182578063a217fddf14610195578063ac0b43e51461019c578063d547741f146101af578063fb51ed4e146101c2575f5ffd5b806301ffc9a7146100b5578063248a9ca3146100dd5780632f2ff15d1461010d5780632f81bb581461012257806336568abe1461014957806374bd276e1461015c575b5f5ffd5b6100c86100c33660046107c1565b61023d565b60405190151581526020015b60405180910390f35b6100ff6100eb3660046107ef565b5f9081526020819052604090206001015490565b6040519081526020016100d4565b61012061011b366004610806565b610273565b005b6100ff7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa981565b610120610157366004610806565b61029d565b6100c861016a36600461083f565b6102d5565b6100c861017d366004610806565b61033c565b6101206101903660046107ef565b610364565b6100ff5f81565b6101206101aa36600461085f565b61044a565b6101206101bd366004610806565b61065b565b61020a6101d03660046107ef565b600160208190525f9182526040909120805491015467ffffffffffffffff80821691600160401b810490911690600160801b900460ff1684565b6040516100d4949392919093845267ffffffffffffffff9283166020850152911660408301521515606082015260800190565b5f6001600160e01b03198216637965db0b60e01b148061026d57506301ffc9a760e01b6001600160e01b03198316145b92915050565b5f8281526020819052604090206001015461028d8161067f565b610297838361068c565b50505050565b6001600160a01b03811633146102c65760405163334bd91960e11b815260040160405180910390fd5b6102d0828261071b565b505050565b5f82815260016020818152604080842081516080810183528154815293015467ffffffffffffffff80821693850193909352600160401b810490921690830152600160801b900460ff1615801560608301819052906103345750805183145b949350505050565b5f918252602082815260408084206001600160a01b0393909316845291905290205460ff1690565b7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa961038e8161067f565b5f82815260016020819052604090912090810154600160801b900460ff166103f45760405162461bcd60e51b815260206004820152601460248201527350617373706f72743a206e6f742061637469766560601b60448201526064015b60405180910390fd5b60018101805460ff60801b19811690915560405167ffffffffffffffff909116815283907f0d11f469b85e239f342e4e940c25c6b5f9f36db1bab403dcf240918309dc21ce9060200160405180910390a2505050565b7fca77cd8f9856ef5fcd36f6b15bf469fe216c2f9114f60dd031f0a2b97b67aaa96104748161067f565b836104c15760405162461bcd60e51b815260206004820152601960248201527f50617373706f72743a207a65726f2076656869636c652069640000000000000060448201526064016103eb565b826105045760405162461bcd60e51b81526020600482015260136024820152720a0c2e6e6e0dee4e87440f4cae4de40d0c2e6d606b1b60448201526064016103eb565b5f8267ffffffffffffffff16116105565760405162461bcd60e51b81526020600482015260166024820152752830b9b9b837b93a1d103d32b937903b32b939b4b7b760511b60448201526064016103eb565b5f8481526001602081905260409091209081015467ffffffffffffffff908116908416116105c65760405162461bcd60e51b815260206004820152601b60248201527f50617373706f72743a2076657273696f6e206e6f74206e65776572000000000060448201526064016103eb565b838155600181018054600160801b67ffffffffffffffff8681166fffffffffffffffffffffffffffffffff199093168317600160401b429283169081029190911760ff60801b191692909217909355604080519283526020830191909152869188917fe3689ec629709a49514dca094d75d46b94aab2c392d04dfb29d9904e00819e96910160405180910390a3505050505050565b5f828152602081905260409020600101546106758161067f565b610297838361071b565b6106898133610784565b50565b5f610697838361033c565b610714575f838152602081815260408083206001600160a01b03861684529091529020805460ff191660011790556106cc3390565b6001600160a01b0316826001600160a01b0316847f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d60405160405180910390a450600161026d565b505f61026d565b5f610726838361033c565b15610714575f838152602081815260408083206001600160a01b0386168085529252808320805460ff1916905551339286917ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b9190a450600161026d565b61078e828261033c565b6107bd5760405163e2517d3f60e01b81526001600160a01b0382166004820152602481018390526044016103eb565b5050565b5f602082840312156107d1575f5ffd5b81356001600160e01b0319811681146107e8575f5ffd5b9392505050565b5f602082840312156107ff575f5ffd5b5035919050565b5f5f60408385031215610817575f5ffd5b8235915060208301356001600160a01b0381168114610834575f5ffd5b809150509250929050565b5f5f60408385031215610850575f5ffd5b50508035926020909101359150565b5f5f5f60608486031215610871575f5ffd5b8335925060208401359150604084013567ffffffffffffffff81168114610896575f5ffd5b80915050925092509256fea2646970667358221220b1cbf61371ef2612abfa908cab7c1cbea847a88ff44a601704cd4ca67c3f3c5e64736f6c63430008220033",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/contracts/TrumoreVehiclePassport.sol",
+  "buildInfoId": "solc-0_8_34-4c194da43111349a6c6e82c9e68cc3593fb8cf1d"
+}
